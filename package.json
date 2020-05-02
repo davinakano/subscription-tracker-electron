@@ -1,20 +1,22 @@
 {
   "name": "expense-tracker-electron",
   "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.3.2",
-    "@testing-library/user-event": "^7.1.2",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-scripts": "3.4.1"
+  "description": "A expense tracker, specially useful for subscriptions",
+  "author": {
+    "name": "Davi Nakano",
+    "email": "davinotdavid@gmail.com",
+    "url": "https://davinakano.me"
   },
+  "main": "public/electron.js",
+  "homepage": ".",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "electron-dev": "concurrently \"BROWSER=none yarn start\" \"wait-on http://localhost:3000 && electron .\"",
+    "postinstall": "electron-builder install-app-deps",
+    "pre-electron-pack": "yarn build",
+    "electron-pack": "electron-builder build --dir --windows --mac --linux"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -30,5 +32,23 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "dependencies": {
+    "@reach/accordion": "^0.8.0",
+    "date-fns": "^2.9.0",
+    "electron-is-dev": "^1.1.0",
+    "electron-store": "^5.1.0"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-scripts": "3.4.1",
+    "electron": "^8.2.5",
+    "electron-builder": "^22.3.2",
+    "concurrently": "^5.0.2",
+    "wait-on": "^4.0.0"
   }
 }
