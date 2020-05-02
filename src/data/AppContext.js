@@ -1,5 +1,6 @@
 import React, { useContext, createContext, useReducer } from "react";
-import expenseValidation from "./Validations";
+import { loadState, saveState } from "./local-storage";
+import expenseValidation from "./validations";
 
 export const AppContext = createContext();
 
@@ -34,21 +35,31 @@ const appStateReducer = (state, action) => {
         };
       }
 
-      return {
+      const newState = {
         ...state,
         expenses: [...state.expenses, { ...newExpense }],
         summaryAmount: state.summaryAmount + newExpense.amount,
         errors: [],
       };
+
+      // Save to localStorage
+      saveState(newState);
+
+      return newState;
     }
     case "REMOVE_EXPENSE": {
       const { expenseId, expenseAmount } = action;
 
-      return {
+      const newState = {
         ...state,
         expenses: state.expenses.filter((expense) => expense.id !== expenseId),
         summaryAmount: state.summaryAmount - expenseAmount,
       };
+
+      // Save to localStorage
+      saveState(newState);
+
+      return newState;
     }
     default:
       return state;
@@ -56,7 +67,14 @@ const appStateReducer = (state, action) => {
 };
 
 export function AppStateProvider({ children }) {
-  const initialState = { expenses: [], summaryAmount: 0 };
+  let initialState = loadState();
+
+  if (initialState === undefined) {
+    initialState = { expenses: [], summaryAmount: 0 };
+  }
+
+  saveState(initialState);
+
   const value = useReducer(appStateReducer, initialState);
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;

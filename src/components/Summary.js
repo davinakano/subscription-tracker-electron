@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Typography } from "@material-ui/core";
-import { useAppState } from "../data/AppContext";
+import { useAppState } from "../data/appContext";
 
 function Summary() {
   const { summaryAmount } = useAppState();

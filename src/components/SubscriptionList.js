@@ -8,9 +8,13 @@ import {
   IconButton,
 } from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
-import { useAppState, useAppReducer } from "../data/AppContext";
+import { useAppState, useAppReducer } from "../data/appContext";
 
 const useStyles = makeStyles((theme) => ({
+  list: {
+    height: "calc(100vh - 295px)",
+    overflow: "auto",
+  },
   listItem: {
     paddingLeft: theme.spacing(0.5),
   },
@@ -28,7 +32,7 @@ function SubscriptionList() {
   }
 
   return (
-    <List>
+    <List className={classes.list}>
       {expenses.map((expense) => {
         const { description, amount } = expense;
         return (
@@ -37,7 +41,7 @@ function SubscriptionList() {
             disableGutters
             className={classes.listItem}
           >
-            <ListItemText primary={`${description} - ${amount}`} />
+            <ListItemText primary={`${description} - $${amount}`} />
             <ListItemSecondaryAction>
               <IconButton
                 data-id={expense.id}

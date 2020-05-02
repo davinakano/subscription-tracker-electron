@@ -1,7 +1,7 @@
 {
-  "name": "expense-tracker-electron",
+  "name": "subscription-tracker-electron",
   "version": "0.1.0",
-  "description": "A expense tracker, specially useful for subscriptions",
+  "description": "A subscription tracker, made with electron",
   "author": {
     "name": "Davi Nakano",
     "email": "davinotdavid@gmail.com",

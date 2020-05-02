@@ -3,7 +3,7 @@ import { Paper, Container, Box } from "@material-ui/core";
 
 function Layout({ children }) {
   return (
-    <Container maxWidth="lg">
+    <Container maxWidth="md">
       <Paper elevation={3}>
         <Box height="calc(100vh - 64px)" marginTop={2} padding={2}>
           {children}

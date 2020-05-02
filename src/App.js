@@ -1,6 +1,6 @@
 import React from "react";
 import { MuiThemeProvider } from "@material-ui/core/styles";
-import { AppStateProvider } from "./data/AppContext";
+import { AppStateProvider } from "./data/appContext";
 import theme from "./styles/theme";
 import Layout from "./components/Layout";
 import Summary from "./components/Summary";
