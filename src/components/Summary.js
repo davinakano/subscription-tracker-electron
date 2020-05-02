@@ -8,10 +8,10 @@ function Summary() {
   return (
     <Box marginBottom={2}>
       <Typography variant="subtitle1" align="center">
-        Subscriptions total
+        Subscriptions monthly total
       </Typography>
-      <Typography variant="h1" align="center">
-        {`$${summaryAmount}`}
+      <Typography variant="h1" align="center" noWrap>
+        {`$${summaryAmount.toFixed(2)}`}
       </Typography>
     </Box>
   );

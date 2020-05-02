@@ -32,7 +32,7 @@ function Form() {
     const newExpense = {
       id: Date.now().toString(),
       description: descriptionInputRef.current.value,
-      amount: parseInt(amountInputRef.current.value) || 0,
+      amount: amountInputRef.current.value,
     };
 
     dispatch({ type: "ADD_EXPENSE", newExpense });

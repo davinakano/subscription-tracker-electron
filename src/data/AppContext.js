@@ -38,7 +38,8 @@ const appStateReducer = (state, action) => {
       const newState = {
         ...state,
         expenses: [...state.expenses, { ...newExpense }],
-        summaryAmount: state.summaryAmount + newExpense.amount,
+        summaryAmount:
+          parseFloat(state.summaryAmount) + parseFloat(newExpense.amount),
         errors: [],
       };
 
@@ -53,7 +54,9 @@ const appStateReducer = (state, action) => {
       const newState = {
         ...state,
         expenses: state.expenses.filter((expense) => expense.id !== expenseId),
-        summaryAmount: state.summaryAmount - expenseAmount,
+        summaryAmount: Math.abs(
+          parseFloat(state.summaryAmount) - parseFloat(expenseAmount)
+        ),
       };
 
       // Save to localStorage
@@ -70,7 +73,7 @@ export function AppStateProvider({ children }) {
   let initialState = loadState();
 
   if (initialState === undefined) {
-    initialState = { expenses: [], summaryAmount: 0 };
+    initialState = { expenses: [], summaryAmount: 0.0 };
   }
 
   saveState(initialState);
