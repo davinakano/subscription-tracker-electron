@@ -25,3 +25,12 @@ To show the Electron application window with your current build:
 ```bash
 $ yarn run electron-dev
 ```
+
+To build a production-version:
+
+```bash
+$ yarn install
+$ yarn postinstall
+$ yarn pre-electron-pack
+$ yarn electron-pack
+```
