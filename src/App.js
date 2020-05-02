@@ -4,6 +4,7 @@ import { Paper, Container, Box } from "@material-ui/core";
 import theme from "./styles/theme";
 import Summary from "./components/Summary";
 import Form from "./components/Form";
+import SubscriptionList from "./components/SubscriptionList";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
           <Box height="calc(100vh - 64px)" marginTop={2} padding={2}>
             <Summary />
             <Form />
+            <SubscriptionList />
           </Box>
         </Paper>
       </Container>
