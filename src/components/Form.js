@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import {
   Box,
@@ -9,6 +9,7 @@ import {
   TextField,
   Button,
 } from "@material-ui/core";
+import { useAppReducer } from "../data/AppContext";
 
 const useStyles = makeStyles((theme) => ({
   textDescription: {
@@ -23,7 +24,19 @@ const useStyles = makeStyles((theme) => ({
 
 function Form() {
   const classes = useStyles();
-  const [amount, setAmount] = useState(0);
+  const dispatch = useAppReducer();
+  const descriptionInputRef = useRef();
+  const amountInputRef = useRef();
+
+  function addExpense() {
+    const newExpense = {
+      id: Date.now(),
+      description: descriptionInputRef.current.value,
+      amount: amountInputRef.current.value,
+    };
+
+    dispatch({ type: "ADD_EXPENSE", newExpense });
+  }
 
   return (
     <Box display="flex" marginBottom={2}>
@@ -32,18 +45,18 @@ function Form() {
         label="Description"
         variant="outlined"
         className={classes.textDescription}
+        inputRef={descriptionInputRef}
       />
       <FormControl fullWidth variant="outlined" className={classes.textAmount}>
         <InputLabel htmlFor="amount">Amount</InputLabel>
         <OutlinedInput
           id="input-amount"
-          value={amount}
-          onChange={(e) => setAmount(e.target.value)}
           startAdornment={<InputAdornment position="start">$</InputAdornment>}
           labelWidth={60}
+          inputRef={amountInputRef}
         />
       </FormControl>
-      <Button variant="contained" color="primary">
+      <Button variant="contained" color="primary" onClick={addExpense}>
         Add
       </Button>
     </Box>

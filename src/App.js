@@ -1,7 +1,8 @@
 import React from "react";
 import { MuiThemeProvider } from "@material-ui/core/styles";
-import { Paper, Container, Box } from "@material-ui/core";
+import { AppStateProvider } from "./data/AppContext";
 import theme from "./styles/theme";
+import Layout from "./components/Layout";
 import Summary from "./components/Summary";
 import Form from "./components/Form";
 import SubscriptionList from "./components/SubscriptionList";
@@ -9,15 +10,13 @@ import SubscriptionList from "./components/SubscriptionList";
 function App() {
   return (
     <MuiThemeProvider theme={theme}>
-      <Container maxWidth="lg">
-        <Paper elevation={3}>
-          <Box height="calc(100vh - 64px)" marginTop={2} padding={2}>
-            <Summary />
-            <Form />
-            <SubscriptionList />
-          </Box>
-        </Paper>
-      </Container>
+      <AppStateProvider>
+        <Layout>
+          <Summary />
+          <Form />
+          <SubscriptionList />
+        </Layout>
+      </AppStateProvider>
     </MuiThemeProvider>
   );
 }
