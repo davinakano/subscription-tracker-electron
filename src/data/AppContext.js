@@ -27,8 +27,6 @@ const appStateReducer = (state, action) => {
       const { newExpense } = action;
       const errors = expenseValidation(newExpense);
 
-      debugger;
-
       if (errors.length) {
         return {
           ...state,
@@ -39,6 +37,17 @@ const appStateReducer = (state, action) => {
       return {
         ...state,
         expenses: [...state.expenses, { ...newExpense }],
+        summaryAmount: state.summaryAmount + newExpense.amount,
+        errors: [],
+      };
+    }
+    case "REMOVE_EXPENSE": {
+      const { expenseId, expenseAmount } = action;
+
+      return {
+        ...state,
+        expenses: state.expenses.filter((expense) => expense.id !== expenseId),
+        summaryAmount: state.summaryAmount - expenseAmount,
       };
     }
     default:
@@ -47,7 +56,7 @@ const appStateReducer = (state, action) => {
 };
 
 export function AppStateProvider({ children }) {
-  const initialState = { expenses: [] };
+  const initialState = { expenses: [], summaryAmount: 0 };
   const value = useReducer(appStateReducer, initialState);
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;

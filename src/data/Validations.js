@@ -5,7 +5,7 @@ export default function expenseValidation(newExpense) {
     errors.push("Description cannot be empty!");
   }
 
-  if (newExpense.amount.trim() === "") {
+  if (newExpense.amount === 0) {
     errors.push("Amount cannot be empty!");
   }
 

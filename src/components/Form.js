@@ -30,12 +30,16 @@ function Form() {
 
   function addExpense() {
     const newExpense = {
-      id: Date.now(),
+      id: Date.now().toString(),
       description: descriptionInputRef.current.value,
-      amount: amountInputRef.current.value,
+      amount: parseInt(amountInputRef.current.value) || 0,
     };
 
     dispatch({ type: "ADD_EXPENSE", newExpense });
+
+    // Cleanup input fields
+    descriptionInputRef.current.value = "";
+    amountInputRef.current.value = "";
   }
 
   return (
