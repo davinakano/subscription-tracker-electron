@@ -6,7 +6,7 @@ function createWindow() {
   // Create the browser window.
   const win = new BrowserWindow({
     width: 800,
-    minWidth: 320,
+    minWidth: 500,
     height: 600,
     fullscreenable: true,
     backgroundColor: "#403F4D",
@@ -22,9 +22,6 @@ function createWindow() {
       ? "http://localhost:3000"
       : `file://${path.join(__dirname, "../build/index.html")}`
   );
-
-  // Open the DevTools.
-  win.webContents.openDevTools();
 }
 
 // This method will be called when Electron has finished
