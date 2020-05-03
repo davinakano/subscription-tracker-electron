@@ -6,6 +6,12 @@ This project is inspired by the great [Cassidy Williams](https://github.com/cass
 
 ![subscription-tracker](assets/screenshot.png)
 
+## Download
+
+Say whaaat? You want to download this? Go grab the latest version from the [Releases](https://github.com/davinakano/subscription-tracker-electron/releases) page!
+
+It is available for macOS, Windows and Linux!
+
 ## Development
 
 - Clone the repo:
